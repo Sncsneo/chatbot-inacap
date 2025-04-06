@@ -1,5 +1,5 @@
 from llama_index.core import VectorStoreIndex, Document, ServiceContext
-from llama_index.core.llms import OpenAI
+from llama_index.llms import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 import fitz  # PyMuPDF
 import random
@@ -9,13 +9,13 @@ def load_chatbot(pdf_path):
     with fitz.open(pdf_path) as doc:
         for page in doc:
             text += page.get_text()
-    
+
     document = Document(text=text)
-    
+
     llm = OpenAI(model="gpt-3.5-turbo")
     embed_model = OpenAIEmbedding()
     service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
-    
+
     index = VectorStoreIndex.from_documents([document], service_context=service_context)
     return index.as_query_engine()
 
