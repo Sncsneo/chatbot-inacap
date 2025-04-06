@@ -1,13 +1,14 @@
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
+from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import ServiceContext
-from llama_index.core.chat_engine import CondenseQuestionChatEngine
-from llama_index.core.node_parser import SimpleNodeParser
 import os
 import random
 
 def load_chatbot(pdf_path):
     documents = SimpleDirectoryReader(input_files=[pdf_path]).load_data()
-    index = VectorStoreIndex.from_documents(documents)
+    embed_model = OpenAIEmbedding()
+    service_context = ServiceContext.from_defaults(embed_model=embed_model)
+    index = VectorStoreIndex.from_documents(documents, service_context=service_context)
     return index.as_query_engine()
 
 PREGUNTAS_EJEMPLO = [
