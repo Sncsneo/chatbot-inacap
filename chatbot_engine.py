@@ -1,6 +1,6 @@
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from llama_index.embeddings.openai import OpenAIEmbedding
-from llama_index.llms import OpenAI
+from llama_index.core.llms import OpenAI
 from llama_index.core import ServiceContext
 import os
 import random
