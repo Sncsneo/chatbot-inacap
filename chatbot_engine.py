@@ -1,13 +1,14 @@
-
 from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
-from llama_index.llms import OpenAI
+from llama_index.core import ServiceContext
+from llama_index.core.chat_engine import CondenseQuestionChatEngine
+from llama_index.core.node_parser import SimpleNodeParser
 import os
 import random
 
 def load_chatbot(pdf_path):
     documents = SimpleDirectoryReader(input_files=[pdf_path]).load_data()
     index = VectorStoreIndex.from_documents(documents)
-    return index.as_query_engine(llm=OpenAI(model="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY")))
+    return index.as_query_engine()
 
 PREGUNTAS_EJEMPLO = [
     "¿Qué avances se han logrado en la dimensión de Vinculación con el Medio?",
