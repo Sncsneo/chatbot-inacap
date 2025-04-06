@@ -1,6 +1,6 @@
-from llama_index.core import VectorStoreIndex, Document, ServiceContext
+from llama_index import VectorStoreIndex, Document, ServiceContext
+from llama_index.llms import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
-from llama_index.core.llms import OpenAI
 import fitz  # PyMuPDF
 import random
 
