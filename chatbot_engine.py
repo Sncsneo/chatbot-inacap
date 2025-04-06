@@ -20,12 +20,11 @@ def load_chatbot(pdf_path):
     return index.as_query_engine()
 
 PREGUNTAS_EJEMPLO = [
-    "¿Qué avances se han logrado en la dimensión de Vinculación con el Medio?",
-    "¿Cómo se estructura el Modelo Educativo del CFT INACAP?",
-    "¿Qué acciones se tomaron luego de la última acreditación en 2018?",
-    "¿Qué indicadores reflejan la empleabilidad de los titulados del CFT?",
-    "¿Qué debilidades se identificaron en el proceso de autoevaluación?",
-    "¿Cuáles son los objetivos del Plan Estratégico 2025-2030?"
+    "¿Cuáles son los principales avances desde la última acreditación?",
+    "¿Qué indicadores reflejan la calidad del CFT INACAP?",
+    "¿Cómo se estructuran los mecanismos de aseguramiento de la calidad?",
+    "¿Qué desafíos se identifican en el proceso de autoevaluación?",
+    "¿Cuál es el rol del Modelo Educativo en la gestión institucional?",
 ]
 
 def generar_pregunta_aleatoria(chatbot):
