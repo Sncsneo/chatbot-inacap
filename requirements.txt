@@ -1,5 +1,5 @@
-llama-index==0.10.26
-openai
 streamlit
+openai
+llama-index==0.10.26
 python-dotenv
 PyMuPDF
