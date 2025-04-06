@@ -1,5 +1,5 @@
 
 streamlit
-llama-index
+llama-index>=0.9.48
 openai
 python-dotenv
