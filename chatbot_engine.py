@@ -1,12 +1,10 @@
 from llama_index.core import VectorStoreIndex, Document, ServiceContext
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core.llms import OpenAI
-import os
 import fitz  # PyMuPDF
 import random
 
 def load_chatbot(pdf_path):
-    # Leer el contenido del PDF con PyMuPDF
     text = ""
     with fitz.open(pdf_path) as doc:
         for page in doc:
