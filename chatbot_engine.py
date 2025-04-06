@@ -1,21 +1,27 @@
+import streamlit as st
 from llama_index.core import VectorStoreIndex, Document, ServiceContext
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 import fitz  # PyMuPDF
 import random
 
+# Obtén la API key de los secrets de Streamlit Cloud
+openai_api_key = st.secrets["api_keys"]["OPENAI_API_KEY"]
+
 def load_chatbot(pdf_path):
     text = ""
     with fitz.open(pdf_path) as doc:
         for page in doc:
             text += page.get_text()
-
+    
     document = Document(text=text)
-
-    llm = OpenAI(model="gpt-3.5-turbo")
-    embed_model = OpenAIEmbedding()
+    
+    # Crea las instancias de OpenAI y OpenAIEmbedding usando la API key
+    llm = OpenAI(model="gpt-3.5-turbo", api_key=openai_api_key)
+    embed_model = OpenAIEmbedding(api_key=openai_api_key)
+    
     service_context = ServiceContext.from_defaults(llm=llm, embed_model=embed_model)
-
+    
     index = VectorStoreIndex.from_documents([document], service_context=service_context)
     return index.as_query_engine()
 
